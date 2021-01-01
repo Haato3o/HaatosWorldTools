@@ -11,65 +11,120 @@ namespace HaatosWorldTool.Core
         public int nItemDataArrayLength;
     }
 
-    public enum ItemRarity : byte
+    public enum ItemFlag : int
     {
+        Default = 2 >> 1,
+        QuestOnly = 2 << 0,
+        Unknown = 2 << 1,
+        Consumable = 2 << 2,
+        Appraisal = 2 << 3,
+        Unknown1 = 2 << 4,
+        Mega = 2 << 5,
+        LevelOne = 2 << 6,
+        LevelTwo = 2 << 7,
+        LevelThree = 2 << 8,
+        Glitter = 2 << 9,
+        Deliverable = 2 << 10,
+        Invisible = 2 << 11
+    }
 
+    public enum ItemType : int
+    {
+        Item,
+        Material,
+        Endemic,
+        Ammo,
+        Jewel,
+        Furniture
     }
 
     public enum IconId : int
     {
-
+        Sac,
+        Mushroom,
+        Egg,
+        Honey,
+        Herb,
+        Potion,
+        Sharpening,
+        Meat,
+        Dung,
+        Gem,
+        Barrel,
+        TrapBox,
+        Trap,
+        Powder,
+        MediumBarrel,
+        Fish,
+        Berry,
+        Ammo,
+        Phial,
+        FullPhial,
+        Web,
+        Seed,
+        Ore,
+        Bug,
+        Bomb,
+        Coin,
+        Ticket,
+        Pickaxe,
+        BugCatcher,
+        Rod,
+        Boomerang,
+        unknown,
+        Binocles,
+        Knife,
+        BBQ,
+        unknown1,
+        Book,
+        unknown2,
+        unknown3,
+        Jewel
     }
 
     public enum IconColor : byte
     {
         White,
-        Unknown1,
-        Unknown2,
-        Unknown3,
+        Red,
+        Green,
         Blue,
-        Unknown5,
-        Unknown6,
-        Unknown7,
-        Unknown8,
-        Unknown9,
-        Unknown10,
-        Unknown11,
-        Unknown12,
-        Unknown13,
-        Unknown14,
+        Yellow,
+        Purple,
+        Cyan,
+        Orange,
+        Pink,
+        DarkYellow,
+        Grey,
+        LightOrange,
+        LightBlue,
+        DarkGreen,
+        DarkPink,
         DarkBlue,
-        Unknown15,
-        Unknown16,
-        Unknown17,
-        Unknown18,
-        Unknown19,
-        Unknown20,
-        Unknown21,
-        Unknown22,
-        Unknown23,
-        Unknown24,
-        Unknown25,
+        DarkPurple,
+        LighterBlue,
+        LightPink,
+        Blurple,
+        OceanBlue,
+        Teal,
+        Salmon,
+        LightYellow,
+        LighterYellow,
+        DarkOrange,
+        Emerald,
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct cItemData
     {
         public int Id { get; set; }
-        public byte unk0 { get; set; }
-        public byte unk1 { get; set; }
-        public byte flag1 { get; set; }
-        public byte flag2 { get; set; }
-        public byte flag3 { get; set; }
+        public byte subType { get; set; }
+        public ItemType Type { get; set; }
         public byte rarity { get; set; }
-        public byte unk2 { get; set; }
+        public byte carryLimit { get; set; }
         public byte unk3 { get; set; }
-        public short unk3_1 { get; set; } // ?
-        public byte flagUnk1 { get; set; }
-        public byte flagUnk2 { get; set; }
-        public byte flagUnk3 { get; set; }
-        public byte flagUnk4 { get; set; }
-        public IconId IconId { get; set; }
+        public short unk4 { get; set; }
+        public ItemFlag Flags { get; set; }
+        public int IconId { get; set; }
         public IconColor IconColor { get; set; }
         public byte unk6Flag2 { get; set; }
         public int SellPrice { get; set; }

@@ -21,7 +21,7 @@
         </Menu>
         <TabControl Margin="0,20,0,0">
             <TabItem Header="Data">
-                <DataGrid x:Name="DisplayData" HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Stretch"/>
+                <DataGrid x:Name="DisplayData" HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Stretch" AlternationCount="1"/>
             </TabItem>
             <TabItem Header="Console">
                 <ItemsControl x:Name="console">

@@ -8,17 +8,13 @@
 struct cItemData
 {
     int Id;
-    char unk0;
-    char unk1;
-    short unk_2;
-    short unk_3;
-    char unk2;
+    char sub_type;
+    int type;
+    char rarity;
+    char carry_limit;
     char unk3;
     short unkn4; // ?
-    char unk4Flag1;
-    char unk4Flag2;
-    char unk4Flag3;
-    char unk4Flag4;
+    int flags;
     int IconId;
     char IconColor;
     char unk6Flag2;
