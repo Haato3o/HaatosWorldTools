@@ -1,0 +1,5 @@
+﻿  ItemsData.cpp
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemsData.cpp(46,52): warning C4838: conversion from 'int' to 'const char' requires a narrowing conversion
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemsData.cpp(46,52): warning C4309: 'initializing': truncation of constant value
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemsData.cpp(51,18): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+  HaatosNativeTools.vcxproj -> D:\dev\C#\HaatosWorldTool\HaatosWorldTool\bin\x64\Debug\HaatosNativeTools.dll

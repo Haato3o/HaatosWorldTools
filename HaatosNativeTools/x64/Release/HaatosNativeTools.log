@@ -1,0 +1,15 @@
+﻿  ItemMake.cpp
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemMake.cpp(37,49): warning C4838: conversion from 'int' to 'const char' requires a narrowing conversion
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemMake.cpp(37,49): warning C4309: 'initializing': truncation of constant value
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemMake.cpp(42,15): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+  ItemsData.cpp
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemsData.cpp(46,52): warning C4838: conversion from 'int' to 'const char' requires a narrowing conversion
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemsData.cpp(46,52): warning C4309: 'initializing': truncation of constant value
+D:\dev\C#\HaatosWorldTool\HaatosNativeTools\FileTypes\ItemsData.cpp(51,18): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+     Creating library D:\dev\C#\HaatosWorldTool\\HaatosWorldTool\bin\x64\Release\HaatosNativeTools.lib and object D:\dev\C#\HaatosWorldTool\\HaatosWorldTool\bin\x64\Release\HaatosNativeTools.exp
+  Generating code
+  2 of 136 functions ( 1.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  HaatosNativeTools.vcxproj -> D:\dev\C#\HaatosWorldTool\HaatosWorldTool\bin\x64\Release\HaatosNativeTools.dll

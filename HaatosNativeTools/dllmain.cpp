@@ -1,5 +1,7 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
+#pragma once
 #include "FileTypes/ItemsData.h"
+#include "FileTypes/ItemMake.h"
 #include "pch.h"
 
 BOOL APIENTRY DllMain( HMODULE hModule,

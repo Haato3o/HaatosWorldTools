@@ -17,6 +17,13 @@ namespace HaatosWorldTool
             InitializeComponent();
         }
 
+        private void SetupConsole()
+        {
+            console.ItemsSource = Logger.Logs;
+        }
+
+        #region Data Deserialization
+
         private void OnOpenItemsDataClick(object sender, RoutedEventArgs e)
         {
             string filepath = OpenFile();
@@ -26,15 +33,61 @@ namespace HaatosWorldTool
 
             cItemDataFile parsedFile = new cItemDataFile();
 
-            ItemsData.Deserialize(filepath, ref parsedFile);
+            if (ItemsData.Deserialize(filepath, ref parsedFile))
+            {
 
-            Native.MarshalToArray(parsedFile.items, parsedFile.header.nItemDataArrayLength, out cItemData[] items);
-            
-            // Deallocate the items array malloced by the C++ runtime
-            ItemsData.Free(ref parsedFile);
+                Native.MarshalToArray(parsedFile.items, parsedFile.header.nItemDataArrayLength, out cItemData[] items);
 
-            DisplayData.ItemsSource = items.AsEnumerable();
+                // Deallocate the items array malloced by the C++ runtime
+                ItemsData.Free(ref parsedFile);
+
+                Logger.WriteLine($"Found {parsedFile.header.nItemDataArrayLength} elements");
+
+                DisplayData.ItemsSource = items.AsEnumerable();
+                return;
+            }
+            Logger.WriteLine($"{filepath} is not a valid ItemsData file");
         }
+
+
+        private void OnOpenItemsMakeClick(object sender, RoutedEventArgs e)
+        {
+            string filepath = OpenFile();
+
+            if (filepath is null)
+                return;
+
+            cItemMakeFile parsedFile = new cItemMakeFile();
+
+            if (ItemMake.Deserialize(filepath, ref parsedFile))
+            {
+
+                Native.MarshalToArray(parsedFile.items, parsedFile.header.nElements, out cItemMake[] items);
+
+                Logger.WriteLine($"Found {parsedFile.header.nElements} elements");
+
+                // Deallocate the items array malloced by the C++ runtime
+                ItemMake.Free(ref parsedFile);
+
+                DisplayData.ItemsSource = items.AsEnumerable();
+                return;
+            }
+            Logger.WriteLine($"{filepath} is not a valid ItemsMake file");
+        }
+
+        #endregion
+
+        #region Windows Events
+
+        private void OnWindowInitialized(object sender, System.EventArgs e)
+        {
+            SetupConsole();
+            Logger.WriteLine("Console initialized succesfully");
+        }
+
+        #endregion
+
+        #region Helpers
 
         private string OpenFile()
         {
@@ -47,5 +100,8 @@ namespace HaatosWorldTool
 
             return null;
         }
+
+        #endregion
+
     }
 }

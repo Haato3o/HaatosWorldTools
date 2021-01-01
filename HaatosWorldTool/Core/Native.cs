@@ -13,10 +13,19 @@ namespace HaatosWorldTool.Core
         public class ItemsData
         {
             [DllImport("HaatosNativeTools.dll", EntryPoint = "DeserializeItemsData")]
-            public static extern bool Deserialize(string path, ref cItemDataFile fileStructure);
+            public static extern bool Deserialize(string filepath, ref cItemDataFile fileStructure);
 
-            [DllImport("HaatosNativeTools.dll")]
+            [DllImport("HaatosNativeTools.dll", EntryPoint = "FreeItemData")]
             public static extern bool Free(ref cItemDataFile fileStructure);
+        }
+
+        public class ItemMake
+        {
+            [DllImport("HaatosNativeTools.dll", EntryPoint = "DeserializeItemMake")]
+            public static extern bool Deserialize(string filepath, ref cItemMakeFile itemMake);
+
+            [DllImport("HaatosNativeTools.dll", EntryPoint = "FreeItemMake")]
+            public static extern void Free(ref cItemMakeFile itemMake);
         }
 
         public static void MarshalToArray<T>(IntPtr unmanagedArray, int length, out T[] mangagedArray)

@@ -27,21 +27,24 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ItemsData.h">
-      <Filter>Header Files\FileTypes</Filter>
-    </ClInclude>
     <ClInclude Include="ExportHelper.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileTypes\ItemMake.h">
+      <Filter>Header Files\FileTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="FileTypes\ItemsData.h">
+      <Filter>Header Files\FileTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="FileTypes\ItemMake.cpp">
+      <Filter>Source Files\FileTypes</Filter>
     </ClCompile>
-    <ClCompile Include="ItemsData.cpp">
+    <ClCompile Include="FileTypes\ItemsData.cpp">
       <Filter>Source Files\FileTypes</Filter>
     </ClCompile>
   </ItemGroup>

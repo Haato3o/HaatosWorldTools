@@ -90,8 +90,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\ItemMakeStructures.cs" />
     <Compile Include="Core\ItemsDataStructures.cs" />
     <Compile Include="Core\Native.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

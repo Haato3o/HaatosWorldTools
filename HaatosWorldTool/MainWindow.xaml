@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Haato's World Tools" Height="450" Width="800">
+        Title="Haato's World Tools" Height="450" Width="800" Initialized="OnWindowInitialized">
     <Grid>
         <Menu HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Open">
-                    <MenuItem Header="ItemsData" Click="OnOpenItemsDataClick"/>
+                    <MenuItem Header="ItemData" Click="OnOpenItemsDataClick"/>
+                    <MenuItem Header="ItemMake" Click="OnOpenItemsMakeClick"/>
                 </MenuItem>
                 <MenuItem Header="Export as...">
                     <MenuItem Header="CSV"/>
@@ -18,6 +19,23 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="DisplayData" HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Stretch"/>
+        <TabControl Margin="0,20,0,0">
+            <TabItem Header="Data">
+                <DataGrid x:Name="DisplayData" HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Stretch"/>
+            </TabItem>
+            <TabItem Header="Console">
+                <ItemsControl x:Name="console">
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <ScrollViewer VirtualizingPanel.IsVirtualizing="True">
+                                <VirtualizingStackPanel IsItemsHost="True"/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+
+                    
+                </ItemsControl>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

@@ -1,5 +1,5 @@
 #pragma once
-#include "pch.h"
+#include "..\pch.h"
 #include <fstream>
 #include "ItemsData.h"
 
@@ -27,13 +27,13 @@ struct cItemData
 };
 #pragma pack(pop)
 
+#pragma pack(push, 1)
 struct cItemDataHeader
 {
-    char magic[4];
-    short unk4;
-    short nItemDataArrayLength;
-    short unk5;
+    char magic[6];
+    int nItemDataArrayLength;
 };
+#pragma pack(pop)
 
 struct cItemDataFile
 {
@@ -43,7 +43,8 @@ struct cItemDataFile
 
 DLLEXPORT bool DeserializeItemsData(char* filePath, cItemDataFile* fileStructure)
 {
-    
+    const char magic[] = { 0x01, 0x10, 0x09, 0x18, 0xBD, 0x00 };
+
     std::ifstream stream(filePath, std::ifstream::binary);
     
     stream.seekg(0, stream.end);
@@ -54,15 +55,25 @@ DLLEXPORT bool DeserializeItemsData(char* filePath, cItemDataFile* fileStructure
     stream.read(buffer, filesize);
     stream.close();
 
-    memcpy(fileStructure, buffer, sizeof(cItemDataHeader));
+    if (memcmp(buffer, magic, sizeof(magic)) == 0)
+    {
 
-    fileStructure->items = (cItemData*)malloc(sizeof(cItemData) * ((cItemDataFile*)buffer)->header.nItemDataArrayLength);
-    memcpy(fileStructure->items, &buffer[sizeof(cItemDataHeader)], sizeof(cItemData) * ((cItemDataFile*)buffer)->header.nItemDataArrayLength);
+        memcpy(fileStructure, buffer, sizeof(cItemDataHeader));
 
-	return true;
+        fileStructure->items = (cItemData*)malloc(sizeof(cItemData) * ((cItemDataFile*)buffer)->header.nItemDataArrayLength);
+        memcpy(fileStructure->items, &buffer[sizeof(cItemDataHeader)], sizeof(cItemData) * ((cItemDataFile*)buffer)->header.nItemDataArrayLength);
+        
+        free(buffer);
+
+        return true;
+    }
+
+    free(buffer);
+
+	return false;
 }
 
-DLLEXPORT void Free(cItemDataFile* ptr)
+DLLEXPORT void FreeItemData(cItemDataFile* ptr)
 {
     free(ptr->items);
 }

@@ -3,14 +3,12 @@ using System.Runtime.InteropServices;
 
 namespace HaatosWorldTool.Core
 {
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct cItemDataHeader
     {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
         public char[] magic;
-        public short unk4;
-        public short nItemDataArrayLength;
-        public short unk5;
+        public int nItemDataArrayLength;
     }
 
     public enum ItemRarity : byte
