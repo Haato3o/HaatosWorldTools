@@ -6,11 +6,12 @@
         mc:Ignorable="d"
         Title="Haato's World Tools" Height="450" Width="800" Initialized="OnWindowInitialized">
     <Grid>
-        <Menu HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top">
+        <Menu HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top" FontFamily="Roboto" FontSize="13">
             <MenuItem Header="File">
                 <MenuItem Header="Open">
-                    <MenuItem Header="ItemData" Click="OnOpenItemsDataClick"/>
-                    <MenuItem Header="ItemMake" Click="OnOpenItemsMakeClick"/>
+                    <MenuItem Header="ItemData (.itm)" Click="OnOpenItemsDataClick"/>
+                    <MenuItem Header="ItemMake (.imk)" Click="OnOpenItemsMakeClick"/>
+                    <MenuItem Header="PopBase (.ppm)" Click="OnOpenPopBaseFile"/>
                 </MenuItem>
                 <MenuItem Header="Export as...">
                     <MenuItem Header="CSV"/>
@@ -21,7 +22,7 @@
         </Menu>
         <TabControl Margin="0,20,0,0">
             <TabItem Header="Data">
-                <DataGrid x:Name="DisplayData" HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Stretch" AlternationCount="1"/>
+                <DataGrid x:Name="DisplayData" HorizontalAlignment="Stretch" Margin="0,20,0,0" VerticalAlignment="Stretch" AlternationCount="1" FontFamily="Roboto" FontSize="13" AlternatingRowBackground="#FFEEEEEE"/>
             </TabItem>
             <TabItem Header="Console">
                 <ItemsControl x:Name="console">

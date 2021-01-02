@@ -93,6 +93,7 @@
     <Compile Include="Core\ItemMakeStructures.cs" />
     <Compile Include="Core\ItemsDataStructures.cs" />
     <Compile Include="Core\Native.cs" />
+    <Compile Include="Core\PopBaseStructures.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -2,6 +2,7 @@
 #pragma once
 #include "FileTypes/ItemsData.h"
 #include "FileTypes/ItemMake.h"
+#include "FileTypes/PopBase.h"
 #include "pch.h"
 
 BOOL APIENTRY DllMain( HMODULE hModule,

@@ -28,6 +28,15 @@ namespace HaatosWorldTool.Core
             public static extern void Free(ref cItemMakeFile itemMake);
         }
 
+        public class PopBase
+        {
+            [DllImport("HaatosNativeTools.dll", EntryPoint = "DeserializePopBase")]
+            public static extern bool Deserialize(string filepath, ref cPopBaseFile file);
+
+            [DllImport("HaatosNativeTools.dll", EntryPoint = "FreePopBase")]
+            public static extern bool Free(ref cPopBaseFile file);
+        }
+
         public static void MarshalToArray<T>(IntPtr unmanagedArray, int length, out T[] mangagedArray)
         {
             var size = Marshal.SizeOf(typeof(T));

@@ -36,6 +36,9 @@
     <ClInclude Include="FileTypes\ItemsData.h">
       <Filter>Header Files\FileTypes</Filter>
     </ClInclude>
+    <ClInclude Include="FileTypes\PopBase.h">
+      <Filter>Header Files\FileTypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files\FileTypes</Filter>
     </ClCompile>
     <ClCompile Include="FileTypes\ItemsData.cpp">
+      <Filter>Source Files\FileTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="FileTypes\PopBase.cpp">
       <Filter>Source Files\FileTypes</Filter>
     </ClCompile>
   </ItemGroup>

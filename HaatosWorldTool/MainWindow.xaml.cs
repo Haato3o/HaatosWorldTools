@@ -26,7 +26,7 @@ namespace HaatosWorldTool
 
         private void OnOpenItemsDataClick(object sender, RoutedEventArgs e)
         {
-            string filepath = OpenFile();
+            string filepath = OpenFile("ItemData (*.itm)|*.itm");
 
             if (filepath is null)
                 return;
@@ -52,7 +52,7 @@ namespace HaatosWorldTool
 
         private void OnOpenItemsMakeClick(object sender, RoutedEventArgs e)
         {
-            string filepath = OpenFile();
+            string filepath = OpenFile("ItemMake (*.imk)|*.imk");
 
             if (filepath is null)
                 return;
@@ -75,6 +75,31 @@ namespace HaatosWorldTool
             Logger.WriteLine($"{filepath} is not a valid ItemsMake file");
         }
 
+        private void OnOpenPopBaseFile(object sender, RoutedEventArgs e)
+        {
+            string filepath = OpenFile("PopBase (*.ppm)|*.ppm");
+
+            if (filepath is null)
+                return;
+
+            cPopBaseFile parsedFile = new cPopBaseFile();
+
+            if (PopBase.Deserialize(filepath, ref parsedFile))
+            {
+
+                Native.MarshalToArray(parsedFile.elements, parsedFile.header.nElements, out cPopBase[] items);
+
+                Logger.WriteLine($"Found {parsedFile.header.nElements} elements");
+
+                // Deallocate the items array malloced by the C++ runtime
+                PopBase.Free(ref parsedFile);
+
+                DisplayData.ItemsSource = items.AsEnumerable();
+                return;
+            }
+            Logger.WriteLine($"{filepath} is not a valid ItemsMake file");
+        }
+
         #endregion
 
         #region Windows Events
@@ -89,9 +114,11 @@ namespace HaatosWorldTool
 
         #region Helpers
 
-        private string OpenFile()
+        private string OpenFile(string filter = null)
         {
             OpenFileDialog dialog = new OpenFileDialog();
+
+            dialog.Filter = filter;
 
             if (dialog.ShowDialog() == true)
             {
