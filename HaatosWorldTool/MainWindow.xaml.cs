@@ -3,7 +3,7 @@ using HaatosWorldTool.Core;
 using Microsoft.Win32;
 using System.Linq;
 using static HaatosWorldTool.Core.Native;
-
+using System;
 
 namespace HaatosWorldTool
 {
@@ -43,7 +43,7 @@ namespace HaatosWorldTool
 
                 Logger.WriteLine($"Found {parsedFile.header.nItemDataArrayLength} elements");
 
-                DisplayData.ItemsSource = items.AsEnumerable();
+                DisplayData.ItemsSource = items;
                 return;
             }
             Logger.WriteLine($"{filepath} is not a valid ItemsData file");
@@ -69,7 +69,7 @@ namespace HaatosWorldTool
                 // Deallocate the items array malloced by the C++ runtime
                 ItemMake.Free(ref parsedFile);
 
-                DisplayData.ItemsSource = items.AsEnumerable();
+                DisplayData.ItemsSource = items;
                 return;
             }
             Logger.WriteLine($"{filepath} is not a valid ItemsMake file");
@@ -93,8 +93,9 @@ namespace HaatosWorldTool
 
                 // Deallocate the items array malloced by the C++ runtime
                 PopBase.Free(ref parsedFile);
+                parsedFile.elements = IntPtr.Zero;
 
-                DisplayData.ItemsSource = items.AsEnumerable();
+                DisplayData.ItemsSource = items;
                 return;
             }
             Logger.WriteLine($"{filepath} is not a valid ItemsMake file");

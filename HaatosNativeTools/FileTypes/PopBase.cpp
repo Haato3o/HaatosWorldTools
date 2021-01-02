@@ -3,31 +3,6 @@
 #include <fstream>
 #include "PopBase.h"
 
-#pragma pack(push, 1)
-
-struct cPopBase
-{
-	char unknown[0x0D];
-};
-
-#pragma pack(pop)
-
-#pragma pack(push, 1)
-
-struct cPopBaseHeader
-{
-	char magic[6];
-	int nElements;
-};
-
-#pragma pack(pop)
-
-struct cPopBaseFile
-{
-	cPopBaseHeader header;
-	cPopBase* elements;
-};
-
 DLLEXPORT bool DeserializePopBase(char* filepath, cPopBaseFile* file)
 {
 	const char magic[] = { 0x01, 0x10, 0x09, 0x18, 0x2E, 0x00 };

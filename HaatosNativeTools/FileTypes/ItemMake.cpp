@@ -3,35 +3,6 @@
 #include "ItemMake.h"
 #include <fstream>
 
-#pragma pack(push, 1)
-struct cItemMakeHeader
-{
-	char magic[6];
-	int nElements;
-};
-#pragma pack(pop)
-
-#pragma pack(push, 1)
-struct cItemMake
-{
-	int output;
-	short unk0;
-	int unk1;
-	int ingredient1;
-	int unk2;
-	int ingredient2;
-	int unk3;
-	int unk4;
-	char unk5;
-};
-#pragma pack(pop)
-
-struct cItemMakeFile
-{
-	cItemMakeHeader header;
-	cItemMake* items;
-};
-
 DLLEXPORT bool DeserializeItemMake(char* filepath, cItemMakeFile* itemMake)
 {
 	const char magic[] = { 0x01, 0x10, 0x09, 0x18, 0xBC, 0x00 };
@@ -50,9 +21,9 @@ DLLEXPORT bool DeserializeItemMake(char* filepath, cItemMakeFile* itemMake)
 	{
 		memcpy(itemMake, buffer, sizeof(cItemMakeHeader));
 
-		itemMake->items = (cItemMake*)malloc(sizeof(cItemMake) * itemMake->header.nElements);
+		itemMake->elements = (cItemMake*)malloc(sizeof(cItemMake) * itemMake->header.nElements);
 
-		memcpy(itemMake->items, &buffer[sizeof(cItemMakeHeader)], itemMake->header.nElements * sizeof(cItemMake));
+		memcpy(itemMake->elements, &buffer[sizeof(cItemMakeHeader)], itemMake->header.nElements * sizeof(cItemMake));
 
 		free(buffer);
 
@@ -66,5 +37,5 @@ DLLEXPORT bool DeserializeItemMake(char* filepath, cItemMakeFile* itemMake)
 
 DLLEXPORT void FreeItemMake(cItemMakeFile* itemMake)
 {
-	free(itemMake->items);
+	free(itemMake->elements);
 }

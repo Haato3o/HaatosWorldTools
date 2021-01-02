@@ -3,40 +3,6 @@
 #include <fstream>
 #include "ItemsData.h"
 
-// Ensure our structure is packed tightly like in the serialized file
-#pragma pack(push, 1)
-struct cItemData
-{
-    int Id;
-    char sub_type;
-    int type;
-    char rarity;
-    char carry_limit;
-    char unk3;
-    short unkn4; // ?
-    int flags;
-    int IconId;
-    char IconColor;
-    char unk6Flag2;
-    int SellPrice;
-    int BuyPrice;
-};
-#pragma pack(pop)
-
-#pragma pack(push, 1)
-struct cItemDataHeader
-{
-    char magic[6];
-    int nItemDataArrayLength;
-};
-#pragma pack(pop)
-
-struct cItemDataFile
-{
-    cItemDataHeader header;
-    cItemData* items;
-};
-
 DLLEXPORT bool DeserializeItemsData(char* filePath, cItemDataFile* fileStructure)
 {
     const char magic[] = { 0x01, 0x10, 0x09, 0x18, 0xBD, 0x00 };
@@ -56,8 +22,8 @@ DLLEXPORT bool DeserializeItemsData(char* filePath, cItemDataFile* fileStructure
 
         memcpy(fileStructure, buffer, sizeof(cItemDataHeader));
 
-        fileStructure->items = (cItemData*)malloc(sizeof(cItemData) * ((cItemDataFile*)buffer)->header.nItemDataArrayLength);
-        memcpy(fileStructure->items, &buffer[sizeof(cItemDataHeader)], sizeof(cItemData) * ((cItemDataFile*)buffer)->header.nItemDataArrayLength);
+        fileStructure->elements = (cItemData*)malloc(sizeof(cItemData) * fileStructure->header.nElements);
+        memcpy(fileStructure->elements, &buffer[sizeof(cItemDataHeader)], sizeof(cItemData) * fileStructure->header.nElements);
         
         free(buffer);
 
@@ -71,5 +37,5 @@ DLLEXPORT bool DeserializeItemsData(char* filePath, cItemDataFile* fileStructure
 
 DLLEXPORT void FreeItemData(cItemDataFile* ptr)
 {
-    free(ptr->items);
+    free(ptr->elements);
 }
